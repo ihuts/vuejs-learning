@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+   <div id="app"></div>
+   <script>
+   var vue = new Vue({
+       el:"#app",
+       data:{
+        // data would be in json format at beginning i used the below, 
+        // then i used array of persons
+        // firstName: "Ali" , lastName: "Al-Saadi" , age:"29"
+           persons:[
+               {firstName: "Ali" , lastName: "Al-Saadi" , age:"29"},
+               {firstName: "Ebo" , lastName: "Al-Saadi" , age:"7"}
+           ]
+       },
+       computed : {
+           // computed used to calculate the value once at beginning like get the current temperture
+           getCurrentTemperture(){
+               return 35
+           }
+       },
+       // filters calls by pipe "|"
+       filters : {
+           getFullName (object){
+               return object.firstName + " " + object.lastName;
+           }
+       },
+       template:`
+       <div>
+        <p>Today temp : {{getCurrentTemperture}}</p>
+        <h1>Clients information</h1>
+            <div>
+                <h2>Name : {{persons[0].firstName}} {{persons[0].lastName}}</h2>
+                <h2>Name (by filters) : {{persons[1] | getFullName}}</h2>
+                <h2>Age : {{persons[0].age}} </h2>
+            </div>
+       </div>`
+   });
+   </script>
+</body>
+</html>
