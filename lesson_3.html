@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+   <div id="app"></div>
+   <script>
+   var vue = new Vue({
+       el:"#app",
+       data:{
+        // data would be in json format at beginning i used the below, 
+        // then i used array of persons
+        // firstName: "Ali" , lastName: "Al-Saadi" , age:"29"
+           persons:[
+               {firstName: "Ali" , lastName: "Al-Saadi" , age:29},
+               {firstName: "Ebo" , lastName: "Al-Saadi" , age:7}
+           ]
+       },
+       computed : {
+           // computed used to calculate the value once at beginning like get the current temperture
+           getCurrentTemperture(){
+               return 35
+           }
+       },
+       methods : {
+        decrementAge(object){
+            object.age = object.age - 1;
+            return object.age;
+        }
+       },
+       // filters calls by pipe "|"
+       filters : {
+           getFullName (object){
+               return object.firstName + " " + object.lastName;
+           }
+       },
+       template:`
+       <div>
+        <p>Today temp : {{getCurrentTemperture}}</p>
+        <h1>Clients information</h1>
+            <div v-for="person , i in persons">
+                <h2>Name : {{person | getFullName}}</h2>
+                <input v-model="person.firstName" type="text" /> <input v-model="person.lastName" type="text" />
+                <br/>
+                <p>Age : {{person.age}}</p>
+                <botton v-on:click="{{decrementAge(person)}}"> - </botton>
+                <button v-on:click="{{person.age=person.age+1}}">+</botton>
+            </div>      
+       </div>`
+   });
+   </script>
+</body>
+</html>
