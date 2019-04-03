@@ -1,0 +1,6 @@
+{
+    persons:[
+               {firstName: "Ali" , lastName: "Al-Saadi" , age:29},
+               {firstName: "Ebo" , lastName: "Al-Saadi" , age:7}
+           ]
+}
